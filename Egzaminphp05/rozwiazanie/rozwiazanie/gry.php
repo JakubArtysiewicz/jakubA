@@ -14,9 +14,19 @@
     <main>
         <section id="lewy">
             <h3>Top 5 gier w tym miesiącu</h3>
-            <ul>
-                
-            </ul>
+                <?php
+                $conn = mysqli_connect("localhost", "root", "", "gry");
+                $query = "SELECT nazwa, punkty FROM gry ORDER BY punkty DESC LIMIT 5;";
+                $answer = mysqli_query($conn, $query);
+                echo "<ul>";
+                while($row = mysqli_fetch_row($answer)){
+                    echo "<li>";
+                    echo "<span class = 'nazwa'>" . $row[0] ."</span>";
+                    echo "<span class = 'punkty'>" . $row[1] ."</span>";
+                    echo "</li>";
+                };
+                echo "</ul>";
+                ?>
             <h3>Nasz sklep</h3>
             <a href="http://sklep.gry.pl">Tu kupisz gry</a>
             <h3>Stronę wykonał</h3>
